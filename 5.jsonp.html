@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+	<input type="button" id="oBtn" value="按钮"/>
+</body>
+</html>
+<script>
+	//jsonp数据必须是用get方式去获取的。
+	var oBtn = document.getElementById('oBtn');
+	
+	function fn1(data){
+		alert(data);
+	}
+	window.onload = function(){
+		oBtn.onclick = function(){
+			var oS = document.createElement('script');
+			oS.src="2.data.js"+'?callback=fn1';
+			document.getElementsByTagName('head')[0].appendChild(oS);
+		}
+	}
+	
+	
+	
+	
+</script>
+
+
+

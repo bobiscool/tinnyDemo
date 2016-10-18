@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+	<input type="button" id="oBtn" value="按钮"/>
+</body>
+</html>
+<script>
+/*
+ 	同源策略:通过这个约定在浏览网页或获取其他服务器的数据提供了安全方面的方法。
+ 	
+ 	在浏览网页的时候，最关键的就是安全问题。
+ 	
+ 	同源策略，它是由Netscape提出的一个著名的安全策略。
+ 	
+ 	所谓同源是指，域名，协议，端口相同。
+ 	
+ 	http/https 协议
+ 	
+ 	http://baike.baidu.com/link?url=pb_a1CaYXchCnltQnW9ZhUWeRb53fzH79vEne8iE3uualBh1LF3c4CVOzx0Sb9KkzPRSgvONKSCtW5zZg_sE0a
+ 	
+ 	
+ 	ftp协议：共享文件的协议
+ 	
+ 	file：本地的协议。
+ 	
+ 	在同一个服务器上去访问别的服务器上的数据。（就出现了跨域）。
+ 	
+ 	1.通过后端去设置一些权限，给你跨域。
+ 		XMLHttpRequest（高版本浏览器才支持）
+ 	
+ 	IE低版本浏览器(IE9及以下浏览器)虽然有XMLHttpRequest，但是没有更新新的跨域的功能。
+ 	
+ 	在IE低版本浏览器将XMLHttpRequest替换成new XDomainRequest():但是IE6不支持。
+ 	
+ 	详细的参数：https://msdn.microsoft.com/zh-cn/library/cc288060
+ 	2.服务器代理的方式去跨域。
+ 	
+ 		让后端去访问一个其他域的数据，然后通过当前域的访问，实现跨域的问题。
+ 	
+ 		如果本身的业务需求更改了，那么开发成本很大。
+ 		
+ 	3.flash脚本跨域   配置XML文件才能成功跨域。
+ 	
+ 	4.jsonp跨域
+ 	
+ 		<img src="">这个标签就是渲染一张图片。
+ 		<link herf="">这个标签就会渲染css样式。
+ 		<script src="">去渲染js代码。
+ 		
+ 		script标签与script标签 执行代码是异步的。
+ 		
+ 		而同script标签执行代码是同步的。
+ 		
+*/
+var oBtn = document.getElementById('oBtn');
+	var Os = document.createElement('script');
+	Os.src = 'http://nizp.net/1.data.js';
+	document.getElementsByTagName('head')[0].appendChild(Os);
+
+	window.onload = function(){
+		console.log(a)
+	}
+	
+	
+	
+	
+</script>
+
+
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	.ok{
+		border: 1px solid green;
+	}
+	.no{
+		border: 1px solid red;
+	}
+</style>
+</head>
+<body>
+	<!--<form action="php/get.php" method="get">-->
+		用户名:<input type="text" name="user" id="user" /><span id="span"></span><br />
+		密码:<input type="password" name="password" />
+		<input type="button" value="提交" id="btn"/>
+	<!--</form>-->
+<script type="text/javascript">
+	var user = document.getElementById('user');
+	user.onblur = function(){
+		var val = this.value;
+		ajax(val,function(json){
+			if(json.code){
+				user.className = 'no';
+				span.style.color = 'red';
+			}else{
+				user.className = 'ok';
+				span.style.color = 'green';
+			}
+			span.innerHTML = json.msg;
+		},function(o){
+			alert('错误的原因为'+o);
+		});
+
+	}
+	
+	function ajax(val,succ,fail){
+			
+			var ajax = new XMLHttpRequest();
+			
+			ajax.open('get','php/get_json2.php?user='+val,true);
+			
+			
+			ajax.send();
+			
+			ajax.onload = function(){
+				/*
+					必须请求成功才执行想要的代码 
+					
+					ajax.status 查看状态码。
+				*/
+				if(ajax.status >= 200 && ajax.status <=207){
+						
+					var json = JSON.parse(ajax.responseText);
+					
+					succ && succ(json);
+							
+				}else{
+					
+					fail && fail(ajax.status);
+				}
+			};
+			
+		}
+	
+	
+</script>
+</body>
+</html>

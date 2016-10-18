@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="jsonp.js"></script>
+<script>
+window.onload = function(){
+	var oBtn = document.getElementById('btn'); 
+	//http://localhost/2015.10.12/321/weather.php?citycode=101010500&callback=fn
+	oBtn.onclick = function(){
+
+		jsonp('http://localhost/2015.10.12/321/weather.php',{
+			citycode : '101010500'
+		},'callback',function(data){
+			console.log(data.weatherinfo);
+		});
+
+
+
+	}
+}
+</script>
+</head>
+
+<body>
+	<input type="button" value="按钮" id="btn" />
+</body>
+</html>

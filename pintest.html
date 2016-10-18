@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script src="jquery-1.9.1.min.js">-->
+    <!--</script>-->
+    <!--<script>-->
+        <!--$(document).ready(function(){-->
+           <!--$.ajax({-->
+               <!--type:"get",-->
+               <!--async:"false",-->
+               <!--url:"http://image.baidu.com/channel/listjson?pn=0&rn=1000&tag1=汽车&tag2=全部&ie=utf8",-->
+               <!--dataType:"jsonp",-->
+               <!--jsonpCallback:'flightHandler',-->
+
+               <!--success:function(json){-->
+                   <!--console.log(json)-->
+               <!--},-->
+               <!--error:function(){-->
+                   <!--alert('fail');-->
+               <!--}-->
+
+           <!--});-->
+        <!--});-->
+    <!--</script>-->
+
+    <script src="jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+
+    ul {
+        width: 1000px;
+        margin: 100px auto 0;
+    }
+
+    li {
+        display: inline-block;
+        list-style: none;
+        /*float: left;*/
+        float: left;
+        max-width: 225px;
+    }
+
+    li img {
+        max-width: 225px;
+        border: 1px solid black;
+    }
+</style>
+<script>
+    window.onload = function(){
+        var Btn = document.getElementById('btn');
+        var Oul = document.getElementsByTagName('ul')[0];
+        var Ali = document.getElementsByTagName('li');
+        var data = null;
+        Btn.onclick = function(){
+            var pagenum = document.getElementById('pn').value;
+
+//           var  xhr =false;
+//            if(window.XMLHttpRequest){
+//                xhr = new XMLHttpRequest();
+//            }else{
+//                xhr = new ActiveXObject('Microsoft.XMLHTTP')
+//            }
+
+//            xhr.open('GET','4.get.php'+'?'+'pn='+document.getElementById('pn').value+'&whitch='+encodeURI(document.getElementById('who').value)+'&whole=全部',true);
+//            xhr.send();
+
+            $.ajax({
+               type:'get',
+                async:'false',
+                dataType:'jsonp',
+                url:'http://www.wookmark.com/api/json/popular?page='+pagenum,
+                success:function(data){
+
+                    for(var i=0;i<data.length;i++){
+                        var _index = getShort();
+                        console.log(data[i]);
+                        var oDiv = document.createElement('div');
+                        var oImg = document.createElement('img');
+//                        oImg.style.height =data[i].height+'px';
+                        oImg.src= data[i].image;
+                        oDiv.appendChild(oImg);
+                        var oP = document.createElement('p');
+                        oP.innerHTML = data[i].title;
+                        oDiv.appendChild(oP);
+                        Ali[_index].appendChild(oDiv);
+
+
+
+                    }
+
+                },
+
+                error:function () {
+                    alert('error');
+                }
+
+            });
+
+        }
+
+
+        
+        
+        function getShort(){
+            var index =0;
+            var ih = Ali[index].offsetHeight;
+            for(var i=1;i<Ali.length;i++){
+                    if(Ali[i].offsetHeight<ih){
+                        index =i;
+                        ih =Ali[i].offsetHeight;
+                    }
+
+            }
+            console.log(index);
+            return index;
+        }
+
+    }
+
+</script>
+<body>
+<input type="button" id="btn" value="go">
+<input type="text" id="pn" value="0">
+<ul>
+    <li>
+        
+    </li>
+    <li>
+        
+    </li>
+    <li>
+        
+    </li>
+    <li>
+        
+    </li>
+
+
+</ul>
+</body>
+</html>

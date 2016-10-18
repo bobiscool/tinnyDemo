@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>请输入 员工编号:</label>
+<input type="text" id="keyword"/>
+<button id="search">查询</button>
+<P id="search-result"></P>
+
+
+
+<label>请输入 员工姓名:</label>
+<input type="text" id="name"/>
+
+<label>请输入 员工:</label>
+<input type="text" id="number"/>
+
+<label>请输入 员工性别:</label>
+<select ><option>男</option><option>女</option></select>
+<label>请输入 员工职位:</label>
+<input type="text" id="work"/>
+<button id="submit">提交</button>
+<P id="creatResult"></P>
+
+<script>
+
+    document.getElementById('search').onclick = function(){
+        //发送查询 并且处理
+        var request = new XMLHttpRequest();
+        request.open('GET','server.php?number='+document.getElementById('keyword').value,true);
+
+
+    }
+
+</script>
+</body>
+</html>

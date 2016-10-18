@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <input type="button" id="oBtn" name="oBtn" value="按钮"/>
+<ul id="oUl"></ul>
+</body>
+<script type="text/javascript" src="ajax_007.js"></script>
+<script>
+    var oUl = document.getElementById('oUl');
+    var oBtn = document.getElementById('oBtn');
+    oBtn.onclick = function(){
+        ajax({
+            url:'data.xml',
+            dataType:'xml',
+            succ:function(data){
+                var person  = data.getElementsByTagName('person');
+
+                for(var i=0;i<person.length;i++){
+                    var oLi = document.createElement('li');
+
+                    function fn(inner){
+                        var aName = person[i].getElementsByTagName('name')[0].text;
+                        var aAge = person[i].getElementsByTagName('age')[0].text;
+                        var aSex = person[i].getElementsByTagName('sex')[0].text;
+                        var aInfo = person[i].getElementsByTagName('info')[0].text;
+                    }
+
+
+                    if(ie('msie 6.0')||ie('msie 7.0')||ie('msie 8.0')||ie('msie 9.0')){
+
+                    }else if(ie('msie 10.0')||ie('trident')){
+                        var aName = person[i].getElementsByTagName('name')[0].textContent;
+                        var aAge = person[i].getElementsByTagName('age')[0].textContent;
+                        var aSex = person[i].getElementsByTagName('sex')[0].textContent;
+                        var aInfo = person[i].getElementsByTagName('info')[0].textContent;
+                    }else{
+                        var aName = person[i].getElementsByTagName('name')[0].innerHTML;
+                        var aAge = person[i].getElementsByTagName('age')[0].innerHTML;
+                        var aSex = person[i].getElementsByTagName('sex')[0].innerHTML;
+                        var aInfo = person[i].getElementsByTagName('info')[0].innerHTML;
+                    }
+
+                    oLi.innerHTML = aName+':今年'+aAge+',性别:'+aSex+',说'+aInfo;
+                    oUl.appendChild(oLi);
+                }
+
+            }
+        })
+
+    }
+
+    function ie(num) {
+        if(window.navigator.userAgent.toLowerCase().indexOf(num)!=-1){
+            return true;
+
+        }else {
+            return false;
+        }
+
+    }
+
+</script>
+</html>
+
+
+

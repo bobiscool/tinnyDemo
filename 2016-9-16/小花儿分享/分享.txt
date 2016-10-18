@@ -1,0 +1,33 @@
+【超文本转移协议】
+hypertext transfer protocol   （http）
+
+
+【超文本标记语言】
+hypertext markup language（html）
+
+
+http:// 
+ftp 
+https://www.baidu.com/news/
+https://www.baidu.com/1/
+https://www.qq.com/
+
+端口、协议、域名相同：同源
+只要有其一不同：就跨域
+
+【跨域请求伪造】
+CSRF( cross-site-request-forgery)
+
+user A B
+
+1.jsonp
+2.html5 api
+3.iframe
+4.flash
+5.proxy
+
+
+
+an event-driven
+non-blocking 
+I/O model  (input output model)

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" id="oBtn" value="sfsdjkfndkj">
+
+</body>
+<script>
+    /**
+     * 同源策略:通过 这个约定 在浏览网页或获取其他服务器的数据提供了安全方面的方法
+     *
+     * 在浏览网页的时候 最关键的很是安全问题
+     *
+     * 同源策略,他是由netscape 提供的著名安全策略
+     *
+     *
+     * 所谓的同源 就是指 同域名 协议 端口相同
+     *
+     * http/https
+     *
+     * ftp协议
+     * file 本地协议
+     *
+     */
+
+    /**
+     * 在一个服务器 上去 访问别的服务器上面的数据
+     * 通过 后端去设置一些权限 搁我跨域
+     * XMLHttpRequest
+     * IE地版本浏览器 (IE及9及其以下的浏览器 ) 虽然有XMLHttpRequest,但是没有跟新 跨域的功能
+     * 在IE低版本浏览器将 XMLHttpRequest替换成new XDomainQequset(),但是IE6不支持
+     *
+     * 2.服务器代理的方式去跨域。
+     *      让后端去访问一个其他瑜的数据,然后通过当前域的访问,实现跨域的问题
+     *
+     *      如果本身的业务需求改变了,那么开发成本更大
+     *
+     *
+     *
+     *   flash 脚本跨域  配置XML文件才能成功跨域
+     *
+     *   jsonP
+     *
+     *
+     * @type {Element}
+     *
+     *
+     *
+     */
+
+    var oBtn  = document.getElementById('oBtn');
+    oBtn.onclick = function(){
+        var ajax = new XMLHttpRequest();
+        ajax.open('get','http://nizp.net/1.php',true);
+
+        ajax.onload = function(){
+           alert(ajax.responseText);
+        };
+
+        ajax.send();
+    }
+    window.onload = function(){
+        oBtn.onclick = function(){
+            var oS = document.createElement('script');
+            oS.src = "5.data.php?callback=fn2";
+            document.getElementsByTagName('head')[0].appendChild(oS);
+        }
+
+        oBtn2.onclick = function(){
+            var oS = document.createElement('script');
+            oS.src = "5.data.php?callback=fn3&num=number";
+            document.getElementsByTagName('head')[0].appendChild(oS);
+        }
+
+    }
+
+
+</script>
+</html>
